@@ -1,3 +1,5 @@
+
+
 void VectorDegisLvl2(Vector2 *Avec,Vector2 *Bvec,Vector2 *Cvec)
 {
     Avec->x =360;
@@ -10,9 +12,9 @@ void VectorDegisLvl2(Vector2 *Avec,Vector2 *Bvec,Vector2 *Cvec)
     
 
 void CoreGamePlayOlusturLvl2(char *SelectedWord,Vector2 Mvec,Vector2 Avec,Vector2 Bvec,Vector2 Cvec,bool *Kelime1,bool *Kelime2)
-{  static bool IsAUsed=0;
-   static bool IsBUsed=0;
-   static bool IsCUsed=0; 
+{  static bool IsAUsed=false;
+   static bool IsBUsed=false;
+   static bool IsCUsed=false; 
     static int i=0;
     Mvec=GetMousePosition(); 
     if(IsMouseButtonDown(0))
@@ -78,16 +80,30 @@ void AltDaireCizLvl2(Vector2 Avec,Vector2 Bvec,Vector2 Cvec)
       
 }
 
-void BolumCizLvl2(bool Kelime1,bool Kelime2)
+void BolumCizLvl2(bool *Kelime1,bool *Kelime2,Vector2 Mvec,int *Lvlselector)
 {   
-    
-    if(Kelime1!=false)
+    DrawRectangle(325,390,90,90,(Color) {127,0,255,255});
+    DrawRectangle(325,290,90,90,(Color) {127,0,255,255});
+    DrawRectangle(325,190,90,90,(Color) {127,0,255,255});
+    DrawRectangle(225,190,90,90,(Color) {127,0,255,255});
+    DrawRectangle(425,190,90,90,(Color) {127,0,255,255});
+    if(*Kelime1!=false)
        {
-           DrawText("KAS",300,345,50,(Color){255,255,255,255});
+           DrawText("K A S",235,200,90,(Color){255,255,255,255});
        }
-       if(Kelime2!=false)
+       if(*Kelime2!=false)
        {
-           DrawText("A\n\n\nS\n\n\nK",300,255,50,(Color){255,255,255,255});
+           DrawText("A\n\n\n\n\n\nS\n\n\n\n\n\n\nK",335,200,90,(Color){255,255,255,255});
        }
-       
+        if(*Kelime1==true && *Kelime2==true )
+       {
+           DrawRectangle(100,840,620,400,(Color){0,0,0,255});
+           if(CheckCollisionPointRec(Mvec,(Rectangle){100,840,620,400})&&IsMouseButtonPressed(0))
+               {
+                   *Lvlselector+=1;
+                   *Kelime1=false;
+                   *Kelime2=false;
+                   
+               }
+       }
 }
