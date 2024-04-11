@@ -1,6 +1,8 @@
 
 #include "raylib.h"
 #include "lvl1.c"
+#include "lvl2.c"
+
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
@@ -21,6 +23,8 @@ int main(void)
    Vector2 Avec={360,820},Bvec={360,1020},Cvec={260,920},Dvec={460,920};
    Vector2 Mvec; 
   SetMousePosition(360,920);
+  VectorDegisLvl2(&Avec,&Bvec,&Cvec);
+  bool Kelime1=false,Kelime2=false,Kelime3=false;
   
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -28,7 +32,7 @@ int main(void)
         // Updatm
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
-       CoreGamePlayOlusturLvl1(SelectedWord,Avec,Bvec,Cvec,Dvec,Mvec);
+       CoreGamePlayOlusturLvl2(SelectedWord,Mvec,Avec,Bvec,Cvec,&Kelime1,&Kelime2);
    
         //----------------------------------------------------------------------------------
 
@@ -38,9 +42,9 @@ int main(void)
        
        ClearBackground((Color){250,250,250,250});
        DrawTexture(texture,0,0,(Color){250,250,250,250});
-       DrawText(SelectedWord,300,500,50,(Color){0,0,0,250});
-       AltDaireCizLvl1();
-       BolumCizLvl1();
+       DrawText(SelectedWord,280,600,50,(Color){0,0,0,250});
+       AltDaireCizLvl2(Avec,Bvec,Cvec);
+       BolumCizLvl2(Kelime1,Kelime2);
         EndDrawing();
         //----------------------------------------------------------------------------------
         
