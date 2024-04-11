@@ -26,37 +26,37 @@ static int i=0;
        {
            if(CheckCollisionPointCircle(Mvec,Avec,50))
                {   
-                   if(IsAUsed==0){
+                   if(IsAUsed==false){
                    SelectedWord[i]='K';
                    i++;
-                   IsAUsed=1;
+                   IsAUsed=true;
                    }
                }
                if(CheckCollisionPointCircle(Mvec,Bvec,50))
                {
                  
-                   if(IsBUsed==0){
+                   if(IsBUsed==false){
                    SelectedWord[i]='U';
                    i++;
-                   IsBUsed=1;
+                   IsBUsed=true;
                    }
                }
                if(CheckCollisionPointCircle(Mvec,Cvec,50))
                {
                    
-                   if(IsCUsed==0){
+                   if(IsCUsed==false){
                    SelectedWord[i]='Y';
                    i++;
-                   IsCUsed=1;
+                   IsCUsed=true;
                    }
                }
                if(CheckCollisionPointCircle(Mvec,Dvec,50))
                {
                    
-                   if(IsDUsed==0){
+                   if(IsDUsed==false){
                    SelectedWord[i]='O';
                    i++;
-                   IsDUsed=1;
+                   IsDUsed=true;
                    }
                }
                SelectedWord[i]='\0';
@@ -65,20 +65,20 @@ static int i=0;
        {   
         if(strcmp(SelectedWord,"OYKU")==0)
         {
-            Kelime1=true;
+            *Kelime1=true;
         }
         if(strcmp(SelectedWord,"KOY")==0)
         {
-            Kelime2=true;
+            *Kelime2=true;
         }
         if(strcmp(SelectedWord,"YUK")==0)
         {
-            Kelime3=true;
+            *Kelime3=true;
         }
-        IsAUsed=0;
-        IsBUsed=0;
-        IsCUsed=0;
-        IsDUsed=0;
+        IsAUsed=false;
+        IsBUsed=false;
+        IsCUsed=false;
+        IsDUsed=false;
        SelectedWord[0]=' ';
        SelectedWord[1]='\0';
        i=0;
@@ -99,19 +99,38 @@ void AltDaireCizLvl1(Vector2 Avec,Vector2 Bvec,Vector2 Cvec,Vector2 Dvec)
        DrawText("O",Dvec.x-10,Dvec.y-20,50,(Color){0,0,0,255});
 }
 
-void BolumCizLvl1(bool Kelime1,bool Kelime2,bool Kelime3)
+void BolumCizLvl1(bool *Kelime1,bool *Kelime2,bool *Kelime3,Vector2 Mvec,int *Lvlselector)
 {   
-    
-    if(Kelime1!=false)
+    DrawRectangle(170,290,90,90,(Color) {127,0,255,255});
+    DrawRectangle(270,290,90,90,(Color) {127,0,255,255});
+    DrawRectangle(370,290,90,90,(Color) {127,0,255,255});
+    DrawRectangle(470,290,90,90,(Color) {127,0,255,255});
+    DrawRectangle(170,390,90,90,(Color) {127,0,255,255});
+    DrawRectangle(170,190,90,90,(Color) {127,0,255,255});
+    DrawRectangle(470,390,90,90,(Color) {127,0,255,255});
+    DrawRectangle(470,190,90,90,(Color) {127,0,255,255});
+    if(*Kelime1==true)
        {
-           DrawText("OYKU",300,300,50,(Color){255,255,255,255});
+           DrawText("O Y K U",180,290,90,(Color){255,255,255,255});
        }
-       if(Kelime2!=false)
+       if(*Kelime2==true)
        {
-           DrawText("K\n\n\nO\n\n\nY",300,255,50,(Color){255,255,255,255});
+           DrawText("K\n\n\n\n\n\nO\n\n\n\n\n\nY",180,200,90,(Color){255,255,255,255});
        }
-       if(Kelime3!=false)
+       if(*Kelime3==true)
        {
-           DrawText("Y\n\n\nU\n\n\nK",405,255,50,(Color){255,255,255,255});
+           DrawText("Y\n\n\n\n\n\nU\n\n\n\n\n\nK",480,200,90,(Color){255,255,255,255});
+       }
+       if(*Kelime1==true && *Kelime2==true && *Kelime3==true )
+       {
+           DrawRectangle(100,840,620,400,(Color){0,0,0,255});
+           if(CheckCollisionPointRec(Mvec,(Rectangle){100,840,620,400})&&IsMouseButtonPressed(0))
+               {
+                   *Lvlselector+=1;
+                   *Kelime1=false;
+                   *Kelime2=false;
+                   *Kelime3=false;
+                   
+               }
        }
 }
