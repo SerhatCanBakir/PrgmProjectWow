@@ -7,7 +7,7 @@ void HomePageCiz()
  DrawRectangle(100,350,150,150,(Color){250,250,250,255});
  DrawText("3",130,350,100,(Color){0,0,0,255});
  DrawRectangle(285,550,150,150,(Color){250,250,250,255});
- DrawText("5",315,550,100,(Color){0,0,0,255});
+ DrawText("X",315,550,100,(Color){0,0,0,255});
  DrawRectangle(470,350,150,150,(Color){250,250,250,255});
  DrawText("4",500,350,100,(Color){0,0,0,255});
 }
