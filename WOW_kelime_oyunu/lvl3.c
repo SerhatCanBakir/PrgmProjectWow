@@ -131,8 +131,9 @@ void BolumCizLvl3(bool *Kelime1,bool *Kelime2,bool *Kelime3,bool *Kelime4,Vector
        }
        if(*Kelime1==true && *Kelime2==true && *Kelime3==true &&*Kelime4==true)
        {
-           DrawRectangle(100,840,620,400,(Color){0,0,0,255});
-           if(CheckCollisionPointRec(Mvec,(Rectangle){100,840,620,400})&&IsMouseButtonPressed(0))
+           DrawRectangle(100,200,500,400,(Color){0,0,0,255});
+           DrawText("Sonraki Bolum",100,300,50,(Color){255,0,0,255});
+           if(CheckCollisionPointRec(Mvec,(Rectangle){100,200,500,400})&&IsMouseButtonPressed(0))
                {
                    *Lvlselector+=1;
                    *Kelime1=false;
