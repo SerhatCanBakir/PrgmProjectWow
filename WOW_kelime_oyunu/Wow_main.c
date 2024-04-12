@@ -4,6 +4,7 @@
 #include "lvl2.c"
 #include "HomePage.c"
 #include "lvl3.c"
+#include "lvl4.c"
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
@@ -25,7 +26,7 @@ int main(void)
    Vector2 Mvec; 
   SetMousePosition(360,920);
   VectorDegisLvl2(&Avec,&Bvec,&Cvec);
-  bool Kelime1=false,Kelime2=false,Kelime3=false,Kelime4=false;
+  bool Kelime1=false,Kelime2=false,Kelime3=false,Kelime4=false,Kelime5=false;
   int LvlSelector=0;
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -46,7 +47,10 @@ int main(void)
             case 3:VectorDegisLvl3(&Avec,&Bvec,&Cvec,&Dvec);
             CoreGamePlayOlusturLvl3(SelectedWord,Mvec,Avec,Bvec,Cvec,Dvec,&Kelime1,&Kelime2,&Kelime3,&Kelime4);
             break;
-           default:
+            case 4:VectorDegisLvl4(&Avec,&Bvec,&Cvec,&Dvec);
+            CoreGamePlayOlusturLvl4(SelectedWord,Mvec,Avec,Bvec,Cvec,Dvec,&Kelime1,&Kelime2,&Kelime3,&Kelime4,&Kelime5);
+            break;
+           default:CloseWindow();
            break;
            
        } 
@@ -73,6 +77,9 @@ int main(void)
            break;
            case 3:AltDaireCizLvl3(Avec,Bvec,Cvec,Dvec);
            BolumCizLvl3(&Kelime1,&Kelime2,&Kelime3,&Kelime4,Mvec,&LvlSelector);
+           break;
+           case 4:AltDaireCizLvl4(Avec,Bvec,Cvec,Dvec);
+           BolumCizLvl4(&Kelime1,&Kelime2,&Kelime3,&Kelime4,&Kelime5,Mvec,&LvlSelector);
            break;
        }
         EndDrawing();
