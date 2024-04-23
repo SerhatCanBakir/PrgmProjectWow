@@ -154,3 +154,66 @@ void BolumCizLvl4(bool *Kelime1,bool *Kelime2,bool *Kelime3,bool *Kelime4,bool *
                }
        }
 }
+
+void CizgiCizLvl4(char *SelectedWord,Vector2 Avec,Vector2 Bvec,Vector2 Cvec,Vector2 Dvec,Vector2 Mvec)
+       {   
+            static int i=0;
+            int sayac=0;
+          Vector2 temp;
+           static int  WhichİsUsed=0;
+           int Another=0;
+           for(int a=0;SelectedWord[a]!='\0';a++)
+           {
+               if(SelectedWord[a]=='A')
+               {
+                   sayac++;
+               }
+           }
+           if(sayac>=2){Another++;}
+          if(IsMouseButtonDown(0)){
+                
+                if(CheckCollisionPointCircle(Mvec,Avec,50)&&WhichİsUsed==0)
+                {
+                    WhichİsUsed=1;
+                }
+                else if(CheckCollisionPointCircle(Mvec,Bvec,50)&&WhichİsUsed==0)
+                {
+                    WhichİsUsed=2;
+                }
+                
+          switch(SelectedWord[i+1])
+          {
+              case 'A': if(WhichİsUsed==1){temp=Avec;}
+              else if(WhichİsUsed==2)
+              {temp=Bvec;}
+              
+              break;
+              case 'D': temp=Cvec;
+              break;
+              case 'M': temp=Dvec;
+              break;
+              case '\0': temp=Mvec;
+              break;
+          }
+           switch(SelectedWord[i])
+           {  
+              
+               case 'A' : if((WhichİsUsed==1&&Another==0)||(WhichİsUsed==2&&Another!=0)) {DrawLineEx(Avec,temp,20,(Color){0,0,0,100});
+           if(temp.x!=Mvec.x&&temp.y!=Mvec.y){i++;CizgiCizLvl4(SelectedWord,Avec,Bvec,Cvec,Dvec,Mvec);}}
+              else {
+                DrawLineEx(Bvec,temp,20,(Color){0,0,0,100});
+              if(temp.x!=Mvec.x&&temp.y!=Mvec.y){i++;CizgiCizLvl4(SelectedWord,Avec,Bvec,Cvec,Dvec,Mvec);}}
+               break;
+               case 'D' : DrawLineEx(Cvec,temp,20,(Color){0,0,0,100});
+               if(temp.x!=Mvec.x&&temp.y!=Mvec.y){i++;CizgiCizLvl4(SelectedWord,Avec,Bvec,Cvec,Dvec,Mvec);}
+               break;
+               case 'M' : DrawLineEx(Dvec,temp,20,(Color){0,0,0,100});
+               if(temp.x!=Mvec.x&&temp.y!=Mvec.y){i++;CizgiCizLvl4(SelectedWord,Avec,Bvec,Cvec,Dvec,Mvec);}
+               break;
+          }
+          }
+          else WhichİsUsed=0;
+          i =0;
+                  
+                
+       } 
