@@ -18,7 +18,6 @@ int main(void)
     InitWindow(screenWidth, screenHeight, "WOW GAME");
     Image resim = LoadImage("resorce/BackGround.png");
     Texture2D texture = LoadTextureFromImage(resim);
-    UnloadImage(resim);
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
    char SelectedWord[10]=" ";
@@ -71,22 +70,26 @@ int main(void)
            break;
            case 1: AltDaireCizLvl1(Avec,Bvec,Cvec,Dvec);
            BolumCizLvl1(&Kelime1,&Kelime2,&Kelime3,Mvec,&LvlSelector);
+           CizgiCizLvl1(SelectedWord,Avec,Bvec,Cvec,Dvec,Mvec);
            break;
            case 2:AltDaireCizLvl2(Avec,Bvec,Cvec);
            BolumCizLvl2(&Kelime1,&Kelime2,Mvec,&LvlSelector);
+           CizgiCizLvl2(SelectedWord,Avec,Bvec,Cvec,Mvec);
            break;
            case 3:AltDaireCizLvl3(Avec,Bvec,Cvec,Dvec);
            BolumCizLvl3(&Kelime1,&Kelime2,&Kelime3,&Kelime4,Mvec,&LvlSelector);
+           CizgiCizLvl3(SelectedWord,Avec,Bvec,Cvec,Dvec,Mvec);
            break;
            case 4:AltDaireCizLvl4(Avec,Bvec,Cvec,Dvec);
            BolumCizLvl4(&Kelime1,&Kelime2,&Kelime3,&Kelime4,&Kelime5,Mvec,&LvlSelector);
+           CizgiCizLvl4(SelectedWord,Avec,Bvec,Cvec,Dvec,Mvec);
            break;
        }
         EndDrawing();
         //----------------------------------------------------------------------------------
         
     }
-
+    
     // De-Initialization
     //--------------------------------------------------------------------------------------
     CloseWindow();        // Close window and OpenGL context
