@@ -108,3 +108,37 @@ void BolumCizLvl2(bool *Kelime1,bool *Kelime2,Vector2 Mvec,int *Lvlselector)
                }
        }
 }
+
+void CizgiCizLvl2(char *SelectedWord,Vector2 Avec,Vector2 Bvec,Vector2 Cvec,Vector2 Mvec)
+       {  static int i=0;
+          Vector2 temp;
+          if(IsMouseButtonDown(0)){
+          switch(SelectedWord[i+1])
+          {
+              case 'A': temp=Avec;
+              break;
+              case 'S' : temp=Bvec;
+              break;
+              case 'K': temp=Cvec;
+              break;
+              case '\0': temp=Mvec;
+              break;
+          }
+           switch(SelectedWord[i])
+           {  
+              
+               case 'A' : DrawLineEx(Avec,temp,20,(Color){0,0,0,100});
+               if(temp.x!=Mvec.x&&temp.y!=Mvec.y){i++;CizgiCizLvl2(SelectedWord,Avec,Bvec,Cvec,Mvec);}
+               break;
+               case 'S' : DrawLineEx(Bvec,temp,20,(Color){0,0,0,100});
+               if(temp.x!=Mvec.x&&temp.y!=Mvec.y){i++;CizgiCizLvl2(SelectedWord,Avec,Bvec,Cvec,Mvec);}
+               break;
+               case 'K' : DrawLineEx(Cvec,temp,20,(Color){0,0,0,100});
+               if(temp.x!=Mvec.x&&temp.y!=Mvec.y){i++;CizgiCizLvl2(SelectedWord,Avec,Bvec,Cvec,Mvec);}
+               break;
+        
+               break;
+          }
+          }
+          i =0;
+       } 
