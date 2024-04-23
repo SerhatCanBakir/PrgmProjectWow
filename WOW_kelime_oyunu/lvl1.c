@@ -11,8 +11,6 @@ void VectorDegisLvl1(Vector2 *Avec,Vector2 *Bvec,Vector2 *Cvec,Vector2 *Dvec)
     Dvec->y=920;
 } 
     
-    
-    
 
 void CoreGamePlayOlusturLvl1(char *SelectedWord,Vector2 Mvec,Vector2 Avec,Vector2 Bvec,Vector2 Cvec,Vector2 Dvec,bool *Kelime1,bool *Kelime2,bool *Kelime3)
 {   
@@ -94,9 +92,9 @@ void AltDaireCizLvl1(Vector2 Avec,Vector2 Bvec,Vector2 Cvec,Vector2 Dvec)
        DrawCircleV(Cvec,50,(Color){255,255,255,180});
        DrawCircleV(Dvec,50,(Color){255,255,255,180});
        DrawText("K",Avec.x-10,Avec.y-20,50,(Color){0,0,0,255});
-       DrawText("U",Bvec.x-10,Bvec.y-20,50,(Color){0,0,0,255});
+       DrawText("Ü",Bvec.x-10,Bvec.y-20,50,(Color){0,0,0,255});
        DrawText("Y",Cvec.x-10,Cvec.y-20,50,(Color){0,0,0,255});
-       DrawText("O",Dvec.x-10,Dvec.y-20,50,(Color){0,0,0,255});
+       DrawText("Ö",Dvec.x-10,Dvec.y-20,50,(Color){0,0,0,255});
 }
 
 void BolumCizLvl1(bool *Kelime1,bool *Kelime2,bool *Kelime3,Vector2 Mvec,int *Lvlselector)
@@ -110,16 +108,17 @@ void BolumCizLvl1(bool *Kelime1,bool *Kelime2,bool *Kelime3,Vector2 Mvec,int *Lv
     DrawRectangle(470,390,90,90,(Color) {127,0,255,255});
     DrawRectangle(470,190,90,90,(Color) {127,0,255,255});
     if(*Kelime1==true)
-       {
-           DrawText("O Y K U",180,290,90,(Color){255,255,255,255});
+       {   
+           
+           DrawText("Ö Y K Ü",180,290,90,(Color){255,255,255,255});
        }
        if(*Kelime2==true)
        {
-           DrawText("K\n\n\n\n\n\nO\n\n\n\n\n\nY",180,200,90,(Color){255,255,255,255});
+           DrawText("K\n\n\n\n\n\nÖ\n\n\n\n\n\nY",180,200,90,(Color){255,255,255,255});
        }
        if(*Kelime3==true)
        {
-           DrawText("Y\n\n\n\n\n\nU\n\n\n\n\n\nK",480,200,90,(Color){255,255,255,255});
+           DrawText("Y\n\n\n\n\n\nÜ\n\n\n\n\n\nK",480,200,90,(Color){255,255,255,255});
        }
        if(*Kelime1==true && *Kelime2==true && *Kelime3==true )
        {
@@ -133,5 +132,41 @@ void BolumCizLvl1(bool *Kelime1,bool *Kelime2,bool *Kelime3,Vector2 Mvec,int *Lv
                    *Kelime3=false;
                    
                }
-       }
-}
+}}
+       
+        void CizgiCizLvl1(char *SelectedWord,Vector2 Avec,Vector2 Bvec,Vector2 Cvec,Vector2 Dvec,Vector2 Mvec)
+       {  static int i=0;
+          Vector2 temp;
+          if(IsMouseButtonDown(0)){
+          switch(SelectedWord[i+1])
+          {
+              case 'K': temp=Avec;
+              break;
+              case 'U' : temp=Bvec;
+              break;
+              case 'Y': temp=Cvec;
+              break;
+              case 'O': temp=Dvec;
+              break;
+              case '\0': temp=Mvec;
+              break;
+          }
+           switch(SelectedWord[i])
+           {  
+              
+               case 'K' : DrawLineEx(Avec,temp,20,(Color){0,0,0,100});
+               if(temp.x!=Mvec.x&&temp.y!=Mvec.y){i++;CizgiCizLvl1(SelectedWord,Avec,Bvec,Cvec,Dvec,Mvec);}
+               break;
+               case 'U' : DrawLineEx(Bvec,temp,20,(Color){0,0,0,100});
+               if(temp.x!=Mvec.x&&temp.y!=Mvec.y){i++;CizgiCizLvl1(SelectedWord,Avec,Bvec,Cvec,Dvec,Mvec);}
+               break;
+               case 'Y' : DrawLineEx(Cvec,temp,20,(Color){0,0,0,100});
+               if(temp.x!=Mvec.x&&temp.y!=Mvec.y){i++;CizgiCizLvl1(SelectedWord,Avec,Bvec,Cvec,Dvec,Mvec);}
+               break;
+               case 'O' : DrawLineEx(Dvec,temp,20,(Color){0,0,0,100});
+               if(temp.x!=Mvec.x&&temp.y!=Mvec.y){i++;CizgiCizLvl1(SelectedWord,Avec,Bvec,Cvec,Dvec,Mvec);}
+               break;
+          }
+          }
+          i =0;
+       } 
