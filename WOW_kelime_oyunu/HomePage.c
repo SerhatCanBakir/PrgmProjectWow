@@ -29,7 +29,7 @@ void HomePageCiz()
  DrawText("3",130,350,100,(Color){0,0,0,255});
  DrawRectangle(285,550,150,150,(Color){250,250,250,255});
  DrawText("X",315,550,100,(Color){0,0,0,255});
- if(ComlitedLvl&10000>=1000){
+ if(ComlitedLvl%10000>=1000){
      DrawRectangle(470,350,150,150,(Color){0,250,0,255});
  }else{
  DrawRectangle(470,350,150,150,(Color){250,250,250,255});}
